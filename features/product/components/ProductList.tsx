@@ -55,7 +55,7 @@ export default async function ProductList({ searchParams }: Props) {
 
 export function ProductListSkeleton() {
   return (
-    <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
+    <div className="grid-cols-auto 3xl:grid-cols-3 grid gap-8 md:grid-cols-2">
       {Array.from({ length: 6 }).map((_, i) => {
         return <ProductCardSkeleton key={i} variant="compact" />;
       })}
