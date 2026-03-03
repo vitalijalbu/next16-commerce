@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React, { Suspense } from 'react';
+import CartLink from '@/features/cart/CartLink';
 import UserProfile, { UserProfileSkeleton } from '@/features/user/components/UserProfile';
 import BoundaryToggle from './internal/BoundaryToggle';
 
@@ -13,6 +14,7 @@ export default function Header() {
           </Link>
         </h1>
         <div className="flex items-center gap-4">
+          <CartLink />
           <Suspense fallback={<UserProfileSkeleton />}>{<UserProfile />}</Suspense>
         </div>
       </header>

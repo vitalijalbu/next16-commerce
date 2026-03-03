@@ -1,7 +1,9 @@
-import { Bookmark } from 'lucide-react';
+import { Bookmark, ShoppingCart } from 'lucide-react';
 import { Suspense } from 'react';
 import BackButton from '@/components/ui/BackButton';
 import Card from '@/components/ui/Card';
+import AddToCartButton from '@/features/cart/AddToCartButton';
+import { getProduct } from '@/features/product/product-queries';
 import Product from '@/features/product/components/Product';
 import ProductDetails, { SavedProduct } from '@/features/product/components/ProductDetails';
 import Reviews, { ReviewsSkeleton } from '@/features/product/components/Reviews';
@@ -13,6 +15,7 @@ export async function generateStaticParams() {
 export default async function ProductPage({ params }: PageProps<'/product/[id]'>) {
   const { id } = await params;
   const productId = Number(id);
+  const productPromise = getProduct(productId);
 
   return (
     <div className="flex flex-col gap-6">
@@ -23,9 +26,14 @@ export default async function ProductPage({ params }: PageProps<'/product/[id]'>
             productId={productId}
             details={
               <ProductDetails key={productId} productId={productId}>
-                <Suspense fallback={<Bookmark aria-hidden className="text-gray size-5" />}>
-                  <SavedProduct productId={productId} />
-                </Suspense>
+                <div className="flex flex-wrap items-center gap-3">
+                  <Suspense fallback={<ShoppingCart aria-hidden className="text-gray size-5" />}>
+                    <AddToCartButton productPromise={productPromise} />
+                  </Suspense>
+                  <Suspense fallback={<Bookmark aria-hidden className="text-gray size-5" />}>
+                    <SavedProduct productId={productId} />
+                  </Suspense>
+                </div>
               </ProductDetails>
             }
           />
