@@ -8,10 +8,10 @@
     "start": "next start",
     "lint": "eslint .",
     "typegen": "next typegen .",
-    "prisma.studio": "npx prisma studio",
+    "prisma.studio": "prisma studio",
     "prisma.seed": "tsx prisma/seed.ts",
-    "prisma.migrate": "npx prisma migrate dev",
-    "prisma.push": "npx prisma db push"
+    "prisma.migrate": "prisma migrate dev",
+    "prisma.push": "prisma db push"
   },
   "dependencies": {
     "@ariakit/react": "^0.4.19",
@@ -56,5 +56,6 @@
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.7.1",
     "prisma": "6.1.0"
-  }
+  },
+  "packageManager": "pnpm@10.29.2"
 }
